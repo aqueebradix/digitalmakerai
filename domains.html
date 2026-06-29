@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Maker AI - Domains</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: { 'slate-950': '#020617' } } }
+    }
+  </script>
+  <style>
+    body { background-color: #020617; }
+    .scrollbar-hide::-webkit-scrollbar { display: none; }
+    .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+<body style="background:#020617;">
+
+<div class="flex flex-col h-screen w-full overflow-hidden" style="background:#020617;">
+
+  <!-- Top Promo Banner -->
+  <div class="sticky top-0 z-50 w-full border-b border-blue-500/30 text-white shadow-md" style="background:linear-gradient(to right,#2563eb,#4f46e5);" id="promo-banner">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-10 flex items-center justify-between">
+      <div class="flex-1 flex justify-center items-center text-xs sm:text-sm font-medium tracking-wide">
+        <span class="hidden sm:inline">🔥 Don't miss out — Lock in up to 38% off Pro &amp; Premium before prices increase.</span>
+        <span class="sm:hidden">🔥 Lock in up to 38% off — prices increasing soon!</span>
+        <a class="ml-2 sm:ml-4 inline-flex items-center gap-1 font-bold underline underline-offset-2 hover:text-blue-200 transition-colors" href="index.html">View Plans
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+      <button class="ml-4 shrink-0 text-blue-200 hover:text-white transition-colors focus:outline-none p-1 rounded-md hover:bg-white/10" id="dismiss-banner">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Main layout -->
+  <div class="flex-1 flex overflow-hidden">
+
+    <!-- Sidebar -->
+    <div class="border-r border-slate-800 flex-col h-full flex-shrink-0 z-30 relative hidden md:flex" style="width:240px;background:#0f172a;">
+
+      <!-- Logo -->
+      <div class="p-4 border-b border-slate-800 flex-shrink-0 flex items-center h-16 justify-between">
+        <a class="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity min-w-0" href="index.html">
+          <div class="h-8 w-8 relative flex-shrink-0">
+            <svg viewBox="0 0 32 32" class="h-8 w-8"><rect width="32" height="32" rx="6" fill="#3b82f6"/><circle cx="16" cy="16" r="10" fill="none" stroke="white" stroke-width="1.5"/><path d="M16 6a14.5 14.5 0 0 1 0 20A14.5 14.5 0 0 1 16 6z" fill="white" opacity="0.3"/><path d="M6 16h20" stroke="white" stroke-width="1.5"/></svg>
+          </div>
+          <h1 class="text-lg font-bold text-white truncate">Digital Maker AI</h1>
+        </a>
+      </div>
+
+      <!-- Nav items -->
+      <div class="flex-1 flex flex-col min-h-0 overflow-hidden">
+        <div class="h-full overflow-y-auto scrollbar-hide">
+          <div class="p-3 space-y-6">
+            <div class="space-y-1">
+              <div class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 px-2">Tools</div>
+              <a href="index.html" class="w-full flex items-center rounded-lg text-sm font-medium gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500"><path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"/></svg>
+                <span class="truncate">Chat</span>
+              </a>
+              <button class="w-full flex items-center rounded-lg text-sm font-medium gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500"><path d="m21.64 3.64-1.28-1.28a1.21 1.21 0 0 0-1.72 0L2.36 18.64a1.21 1.21 0 0 0 0 1.72l1.28 1.28a1.2 1.2 0 0 0 1.72 0L21.64 5.36a1.2 1.2 0 0 0 0-1.72z"/><path d="m14 7 3 3"/><path d="M5 6v4"/><path d="M19 14v4"/><path d="M10 2v2"/><path d="M7 8H3"/><path d="M21 16h-4"/><path d="M11 3H9"/></svg>
+                <span class="truncate">Product Maker</span>
+              </button>
+              <button class="w-full flex items-center rounded-lg text-sm font-medium gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                <span class="truncate">Prompt Maker</span>
+              </button>
+              <button class="w-full flex items-center rounded-lg text-sm font-medium gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <span class="truncate">Product Research</span>
+              </button>
+              <button class="w-full flex items-center rounded-lg text-sm font-medium gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+                <span class="truncate">Competitor Analyzer</span>
+              </button>
+              <button class="w-full flex items-center rounded-lg text-sm font-medium gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"/><path d="M2 7h20"/></svg>
+                <span class="truncate">Store Finder</span>
+              </button>
+              <button class="w-full flex items-center rounded-lg text-sm font-medium gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg>
+                <span class="truncate">Faceless Finder</span>
+                <span class="ml-auto text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-md bg-green-500/15 text-green-400 border border-green-500/40">New</span>
+              </button>
+              <button class="w-full flex items-center rounded-lg text-sm font-medium gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500"><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7"/><line x1="16" x2="22" y1="5" y2="5"/><line x1="19" x2="19" y1="2" y2="8"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+                <span class="truncate">Image Maker</span>
+              </button>
+              <button class="w-full flex items-center rounded-lg text-sm font-medium gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500"><path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2" ry="2"/></svg>
+                <span class="truncate">Video Maker</span>
+              </button>
+              <button class="w-full flex items-center rounded-lg text-sm font-medium gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
+                <span class="truncate">Ad Library</span>
+              </button>
+              <!-- Website Maker -->
+              <a href="store-builder.html" class="w-full flex items-center rounded-lg text-sm font-medium gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                <span class="truncate">Website Maker</span>
+              </a>
+              <!-- Domains - ACTIVE -->
+              <button class="w-full flex items-center rounded-lg text-sm font-medium gap-3 px-3 py-2.5 bg-blue-600 text-white shadow-lg shadow-blue-900/20">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-white"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="M6 8h.01"/><path d="M2 12h20"/></svg>
+                <span class="truncate">Domains</span>
+              </button>
+              <button class="w-full flex items-center rounded-lg text-sm font-medium gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg>
+                <span class="truncate">History</span>
+              </button>
+              <button class="w-full flex items-center rounded-lg text-sm font-medium gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                <span class="truncate">Tutorial</span>
+                <span class="ml-auto text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-md bg-green-500/15 text-green-400 border border-green-500/40">New</span>
+              </button>
+            </div>
+
+            <!-- Free Plan Usage -->
+            <div class="px-3 py-4 mx-2 rounded-xl border border-slate-800/60" style="background:rgba(15,23,42,0.4);">
+              <div class="flex items-center justify-between mb-3">
+                <h4 class="text-xs font-semibold text-slate-300 uppercase tracking-wider">Free Plan Usage</h4>
+                <span class="text-[10px] px-2 py-0.5 rounded-full font-bold text-white flex items-center gap-1 cursor-pointer" style="background:linear-gradient(to right,#2563eb,#4f46e5);">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>
+                  UPGRADE
+                </span>
+              </div>
+              <div class="space-y-3">
+                <div class="space-y-1.5">
+                  <div class="flex justify-between items-center text-xs"><span class="text-slate-400 font-medium">AI Chat</span><span class="text-slate-500">0/5</span></div>
+                  <div class="relative w-full overflow-hidden rounded-full h-1.5 bg-slate-800"><div class="h-full bg-blue-600" style="width:0%"></div></div>
+                </div>
+                <div class="space-y-1.5">
+                  <div class="flex justify-between items-center text-xs"><span class="text-slate-400 font-medium">Prompts</span><span class="text-slate-500">0/3</span></div>
+                  <div class="relative w-full overflow-hidden rounded-full h-1.5 bg-slate-800"><div class="h-full bg-blue-600" style="width:0%"></div></div>
+                </div>
+                <div class="space-y-1.5">
+                  <div class="flex justify-between items-center text-xs"><span class="text-slate-400 font-medium">Replication</span><span class="text-slate-500">0/1</span></div>
+                  <div class="relative w-full overflow-hidden rounded-full h-1.5 bg-slate-800"><div class="h-full bg-blue-600" style="width:0%"></div></div>
+                </div>
+                <div class="space-y-1.5">
+                  <div class="flex justify-between items-center text-xs"><span class="text-slate-400 font-medium">Competitor</span><span class="text-slate-500">0/1</span></div>
+                  <div class="relative w-full overflow-hidden rounded-full h-1.5 bg-slate-800"><div class="h-full bg-blue-600" style="width:0%"></div></div>
+                </div>
+              </div>
+              <p class="text-[9px] text-slate-600 text-center mt-3 italic">Usage resets every Monday</p>
+            </div>
+
+            <!-- Recent Chats -->
+            <div class="space-y-1">
+              <div class="flex items-center justify-between px-2 mb-2 py-1 hover:bg-slate-800/30 rounded-md cursor-pointer">
+                <div class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Recent Chats</div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500"><path d="m6 9 6 6 6-6"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- User Profile -->
+      <div class="border-t border-slate-800 flex-shrink-0 p-4" style="background:rgba(15,23,42,0.5);">
+        <div class="flex items-center gap-3 mb-4 px-2">
+          <div class="h-8 w-8 rounded-full flex items-center justify-center text-white text-xs font-bold shrink-0" style="background:linear-gradient(to bottom right,#3b82f6,#1d4ed8);">M</div>
+          <div class="flex-1 min-w-0">
+            <p class="text-sm font-medium text-white truncate">Mohammad Aqueeb</p>
+            <p class="text-xs font-medium text-slate-500">Pro Plan</p>
+          </div>
+        </div>
+        <div class="space-y-1">
+          <button class="flex items-center text-sm font-medium h-9 rounded-md px-3 w-full justify-start text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+            Settings
+          </button>
+          <button class="flex items-center text-sm font-medium h-9 rounded-md px-3 w-full justify-start text-red-400 hover:text-red-300 hover:bg-red-950/30 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+            Sign Out
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col min-w-0 relative" style="background:#020617;">
+
+      <!-- Mobile header -->
+      <div class="md:hidden flex items-center justify-between p-4 border-b border-slate-800 flex-shrink-0 z-20" style="background:#0f172a;">
+        <div class="flex items-center gap-2">
+          <svg viewBox="0 0 32 32" class="h-6 w-6"><rect width="32" height="32" rx="6" fill="#3b82f6"/><circle cx="16" cy="16" r="10" fill="none" stroke="white" stroke-width="1.5"/><path d="M16 6a14.5 14.5 0 0 1 0 20A14.5 14.5 0 0 1 16 6z" fill="white" opacity="0.3"/><path d="M6 16h20" stroke="white" stroke-width="1.5"/></svg>
+          <span class="font-bold text-white">Digital Maker AI</span>
+        </div>
+        <button class="text-white p-2 hover:bg-slate-800 rounded">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+        </button>
+      </div>
+
+      <main class="flex-1 overflow-auto w-full">
+        <div class="min-h-full w-full flex flex-col py-6 md:py-12 px-4 sm:px-6 lg:px-8" style="background:#020617;">
+          <div class="max-w-3xl w-full mx-auto space-y-6">
+
+            <!-- Page heading -->
+            <div>
+              <div class="flex items-center gap-2 mb-3">
+                <a href="store-builder.html" class="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-slate-300 transition-colors">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+                  Back to Website Maker
+                </a>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,rgba(59,130,246,0.2),rgba(99,102,241,0.2));border:1px solid rgba(59,130,246,0.3);">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="M6 8h.01"/><path d="M2 12h20"/></svg>
+                </div>
+                <div>
+                  <h1 class="text-2xl font-bold text-white">Domains</h1>
+                  <p class="text-sm text-slate-500">Manage your domain names</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- My Domains card -->
+            <div class="border border-slate-800 rounded-2xl overflow-visible" style="background:#0f172a;">
+              <!-- Card header -->
+              <div class="px-5 py-4 border-b border-slate-800 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                  <span class="text-sm font-semibold text-white">My Domains</span>
+                  <span class="text-xs font-medium px-2 py-0.5 rounded-full text-slate-400" style="background:#1e293b;">1</span>
+                </div>
+                <span class="text-xs font-medium px-2.5 py-1 rounded-full text-emerald-400 flex items-center gap-1.5" style="background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.2);">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block"></span>
+                  Pro Plan
+                </span>
+              </div>
+
+              <!-- Domain row -->
+              <div class="p-5">
+                <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+
+                  <!-- Domain info -->
+                  <div class="flex-1 min-w-0">
+                    <div class="flex items-center gap-2 flex-wrap">
+                      <span id="domain-name-display" class="font-bold text-white text-base">budgettracker.store</span>
+                      <span class="flex items-center gap-1 text-xs font-medium text-emerald-400 px-2 py-0.5 rounded-full" style="background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.2);">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block"></span>
+                        Connected
+                      </span>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-1">Expiry <span id="domain-expiry-display">June 29, 2027</span> &nbsp;·&nbsp; $49/yr renewal</p>
+                  </div>
+
+                  <!-- Actions -->
+                  <div class="flex items-center gap-2 flex-shrink-0">
+
+                    <!-- Auto-renew toggle -->
+                    <div class="flex items-center gap-2 pr-1">
+                      <span class="text-xs text-slate-500 hidden sm:block">Auto-renew</span>
+                      <div id="autorenew-track" onclick="toggleAutoRenew()" title="Auto-renew" style="width:36px;height:20px;border-radius:10px;background:#3b82f6;cursor:pointer;position:relative;flex-shrink:0;transition:background 0.2s ease;">
+                        <div id="autorenew-thumb" style="width:16px;height:16px;border-radius:50%;background:white;position:absolute;top:2px;left:18px;transition:left 0.2s ease;box-shadow:0 1px 3px rgba(0,0,0,0.4);"></div>
+                      </div>
+                    </div>
+
+                    <!-- Renew button -->
+                    <button onclick="openRenewModal()" class="h-8 px-3.5 text-xs font-semibold rounded-lg transition-colors flex items-center gap-1.5" style="background:#1e293b;border:1px solid #334155;color:#cbd5e1;" onmouseover="this.style.background='#293548';this.style.color='white'" onmouseout="this.style.background='#1e293b';this.style.color='#cbd5e1'">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg>
+                      Renew
+                    </button>
+
+                    <!-- Manage button -->
+                    <button class="h-8 px-3.5 text-xs font-semibold rounded-lg transition-colors flex items-center gap-1.5 text-white" style="background:#3b82f6;" onmouseover="this.style.background='#2563eb'" onmouseout="this.style.background='#3b82f6'">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+                      Manage
+                    </button>
+
+                    <!-- Three-dot menu -->
+                    <div class="relative" id="dots-container">
+                      <button onclick="toggleDotsMenu(event)" class="w-8 h-8 flex items-center justify-center rounded-lg transition-colors text-slate-400 hover:text-white" style="border:1px solid #334155;" onmouseover="this.style.background='#1e293b'" onmouseout="this.style.background='transparent'">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg>
+                      </button>
+                      <!-- Dropdown — opens upward -->
+                      <div id="dots-dropdown" style="display:none;position:absolute;bottom:calc(100% + 6px);right:0;background:#1e293b;border:1px solid #334155;border-radius:10px;box-shadow:0 -8px 32px rgba(0,0,0,0.5);min-width:160px;z-index:50;overflow:hidden;">
+                        <button onclick="makePrimary()" class="w-full px-4 py-2.5 text-sm text-left text-slate-300 hover:text-white flex items-center gap-2.5 transition-colors" onmouseover="this.style.background='rgba(255,255,255,0.05)'" onmouseout="this.style.background='transparent'">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                          Make primary
+                        </button>
+                        <div style="height:1px;background:#334155;margin:0 12px;"></div>
+                        <button class="w-full px-4 py-2.5 text-sm text-left text-red-400 hover:text-red-300 flex items-center gap-2.5 transition-colors" onmouseover="this.style.background='rgba(239,68,68,0.05)'" onmouseout="this.style.background='transparent'">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+                          Remove domain
+                        </button>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+                <!-- Domain detail strip -->
+                <div class="mt-4 rounded-xl p-3.5 grid grid-cols-2 sm:grid-cols-4 gap-3" style="background:#020617;border:1px solid #1e293b;">
+                  <div>
+                    <p class="text-[10px] text-slate-600 uppercase tracking-wider font-medium mb-0.5">Registrar</p>
+                    <p class="text-xs text-slate-300 font-medium">Namify</p>
+                  </div>
+                  <div>
+                    <p class="text-[10px] text-slate-600 uppercase tracking-wider font-medium mb-0.5">DNS</p>
+                    <p class="text-xs text-slate-300 font-medium">Digital Maker AI</p>
+                  </div>
+                  <div>
+                    <p class="text-[10px] text-slate-600 uppercase tracking-wider font-medium mb-0.5">Auto-renew</p>
+                    <p class="text-xs text-emerald-400 font-medium" id="autorenew-status-label">On</p>
+                  </div>
+                  <div>
+                    <p class="text-[10px] text-slate-600 uppercase tracking-wider font-medium mb-0.5">SSL</p>
+                    <p class="text-xs text-emerald-400 font-medium">Active</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Find another domain -->
+            <div class="border border-slate-700/50 rounded-2xl p-6" style="background:linear-gradient(135deg,#0f172a 0%,#020617 100%);">
+              <div class="flex items-start gap-3 mb-5">
+                <div class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0" style="background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.2);">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                </div>
+                <div>
+                  <h3 class="font-bold text-white text-lg leading-tight">Find another domain. ⚡</h3>
+                  <p class="text-sm text-slate-500 mt-0.5">Search for more .store domains to expand your brand.</p>
+                </div>
+              </div>
+              <div class="flex gap-2">
+                <div class="flex-1 relative">
+                  <input id="new-domain-input" type="text" placeholder="e.g. mybrandname" class="w-full h-11 pl-4 pr-4 text-sm text-white placeholder-slate-600 rounded-xl outline-none transition-colors" style="background:#020617;border:1px solid #334155;" onfocus="this.style.borderColor='#3b82f6'" onblur="this.style.borderColor='#334155'" onkeydown="if(event.key==='Enter')searchNewDomain()">
+                </div>
+                <button onclick="searchNewDomain()" class="h-11 px-5 text-sm font-semibold text-white rounded-xl flex-shrink-0 transition-colors" style="background:#3b82f6;" onmouseover="this.style.background='#2563eb'" onmouseout="this.style.background='#3b82f6'">Search</button>
+              </div>
+              <!-- Search results placeholder -->
+              <div id="new-domain-results" style="display:none;" class="mt-4 border border-slate-800 rounded-xl overflow-hidden" style="background:#020617;"></div>
+              <!-- Tips -->
+              <div class="flex flex-wrap gap-2 mt-4">
+                <span class="text-[11px] text-slate-600 px-2.5 py-1 rounded-full" style="background:#0f172a;border:1px solid #1e293b;">💡 Use your brand name</span>
+                <span class="text-[11px] text-slate-600 px-2.5 py-1 rounded-full" style="background:#0f172a;border:1px solid #1e293b;">✨ .store TLD only</span>
+                <span class="text-[11px] text-slate-600 px-2.5 py-1 rounded-full" style="background:#0f172a;border:1px solid #1e293b;">🆓 Free first year with Pro</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
+
+<!-- Renew Domain Modal -->
+<div id="renew-modal" style="display:none;position:fixed;inset:0;z-index:100;background:rgba(2,6,23,0.85);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:16px;" onclick="if(event.target===this)closeRenewModal()">
+  <div style="background:#0f172a;border:1px solid #334155;border-radius:20px;width:100%;max-width:400px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,0.6);">
+
+    <!-- Modal header -->
+    <div style="padding:20px 24px 16px;border-bottom:1px solid #1e293b;display:flex;align-items:center;justify-content:space-between;">
+      <div>
+        <p style="font-size:11px;color:#64748b;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:2px;">Invoice from Digital Maker AI</p>
+        <p style="font-size:22px;font-weight:800;color:white;">$49.00</p>
+        <p style="font-size:12px;color:#64748b;margin-top:2px;">Domain renewal — 1 year</p>
+      </div>
+      <button onclick="closeRenewModal()" style="width:32px;height:32px;border-radius:8px;background:#1e293b;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#94a3b8;" onmouseover="this.style.background='#293548'" onmouseout="this.style.background='#1e293b'">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </div>
+
+    <!-- Invoice body (visible before payment) -->
+    <div id="renew-invoice" style="padding:20px 24px;">
+      <!-- Domain row -->
+      <div style="background:#020617;border:1px solid #1e293b;border-radius:12px;padding:16px;margin-bottom:16px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="width:36px;height:36px;border-radius:8px;background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.2);display:flex;align-items:center;justify-content:center;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+            </div>
+            <div>
+              <p id="renew-domain-name" style="font-size:14px;font-weight:700;color:white;">budgettracker.store</p>
+              <p style="font-size:11px;color:#64748b;margin-top:1px;">Domain renewal for 1 year</p>
+            </div>
+          </div>
+          <span style="font-size:14px;font-weight:700;color:white;">$49.00</span>
+        </div>
+        <div style="height:1px;background:#1e293b;margin-bottom:12px;"></div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+          <span style="font-size:12px;color:#64748b;">Subtotal</span>
+          <span style="font-size:12px;color:#94a3b8;">$49.00</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;">
+          <span style="font-size:12px;color:#64748b;">Total due today</span>
+          <span style="font-size:13px;font-weight:700;color:white;">$49.00</span>
+        </div>
+      </div>
+
+      <!-- New expiry note -->
+      <div style="display:flex;align-items:center;gap:8px;padding:10px 12px;background:rgba(16,185,129,0.07);border:1px solid rgba(16,185,129,0.15);border-radius:8px;margin-bottom:20px;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
+        <p style="font-size:12px;color:#6ee7b7;">Extends expiry to <span id="renew-new-expiry">June 29, 2028</span></p>
+      </div>
+
+      <!-- Pay button -->
+      <button onclick="completeRenewal()" id="renew-pay-btn" style="width:100%;height:44px;background:#3b82f6;border:none;border-radius:12px;font-size:14px;font-weight:700;color:white;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:background 0.15s;" onmouseover="this.style.background='#2563eb'" onmouseout="this.style.background='#3b82f6'">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+        Pay & Renew — $49.00
+      </button>
+      <p style="font-size:11px;color:#475569;text-align:center;margin-top:10px;">Secure payment · Cancel anytime · Auto-renew can be turned off</p>
+    </div>
+
+    <!-- Success state (hidden) -->
+    <div id="renew-success" style="display:none;padding:32px 24px;text-align:center;">
+      <div style="width:52px;height:52px;border-radius:50%;background:rgba(16,185,129,0.15);border:1px solid rgba(16,185,129,0.3);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>
+      </div>
+      <p style="font-size:17px;font-weight:700;color:white;margin-bottom:6px;">Domain renewed!</p>
+      <p style="font-size:13px;color:#64748b;">Your domain has been renewed successfully. New expiry: <span id="success-expiry" style="color:#94a3b8;font-weight:500;">June 29, 2028</span></p>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // Read domain from URL param
+  const urlParams = new URLSearchParams(window.location.search);
+  const domainName = urlParams.get('domain') || 'budgettracker.store';
+
+  // Populate all domain name displays on load
+  document.getElementById('domain-name-display').textContent = domainName;
+  document.getElementById('renew-domain-name').textContent = domainName;
+
+  // Banner dismiss
+  document.getElementById('dismiss-banner').onclick = function() {
+    document.getElementById('promo-banner').style.display = 'none';
+  };
+
+  // Auto-renew toggle
+  let autoRenewOn = true;
+  function toggleAutoRenew() {
+    autoRenewOn = !autoRenewOn;
+    const track = document.getElementById('autorenew-track');
+    const thumb = document.getElementById('autorenew-thumb');
+    const label = document.getElementById('autorenew-status-label');
+    track.style.background = autoRenewOn ? '#3b82f6' : '#475569';
+    thumb.style.left = autoRenewOn ? '18px' : '2px';
+    label.textContent = autoRenewOn ? 'On' : 'Off';
+    label.style.color = autoRenewOn ? '#34d399' : '#94a3b8';
+  }
+
+  // Three-dot menu
+  function toggleDotsMenu(e) {
+    e.stopPropagation();
+    const dd = document.getElementById('dots-dropdown');
+    dd.style.display = dd.style.display === 'none' ? 'block' : 'none';
+  }
+  document.addEventListener('click', function(e) {
+    const container = document.getElementById('dots-container');
+    if (container && !container.contains(e.target)) {
+      document.getElementById('dots-dropdown').style.display = 'none';
+    }
+  });
+  function makePrimary() {
+    document.getElementById('dots-dropdown').style.display = 'none';
+    // In a real app this would set the primary domain — prototype no-op
+  }
+
+  // Renew modal
+  function openRenewModal() {
+    const modal = document.getElementById('renew-modal');
+    document.getElementById('renew-invoice').style.display = 'block';
+    document.getElementById('renew-success').style.display = 'none';
+    modal.style.display = 'flex';
+  }
+  function closeRenewModal() {
+    document.getElementById('renew-modal').style.display = 'none';
+  }
+  function completeRenewal() {
+    const btn = document.getElementById('renew-pay-btn');
+    btn.disabled = true;
+    btn.style.background = '#1d4ed8';
+    btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="animation:spin 0.8s linear infinite"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> Processing...';
+    setTimeout(function() {
+      document.getElementById('renew-invoice').style.display = 'none';
+      document.getElementById('renew-success').style.display = 'block';
+      // Update expiry in the table
+      document.getElementById('domain-expiry-display').textContent = 'June 29, 2028';
+      setTimeout(closeRenewModal, 2400);
+    }, 1600);
+  }
+
+  // New domain search
+  function searchNewDomain() {
+    const input = document.getElementById('new-domain-input').value.trim();
+    if (!input) return;
+    const name = input.toLowerCase().replace(/[^a-z0-9]/g, '').replace(/store$/, '') || 'mybrand';
+    const hero = name + '.store';
+    const alts = ['the' + name, name + 'co', 'my' + name, 'get' + name];
+    const allDomains = [{ d: hero, hero: true }, ...alts.map(n => ({ d: n + '.store', hero: false }))];
+    const container = document.getElementById('new-domain-results');
+    container.style.background = '#020617';
+    container.innerHTML = allDomains.map((item, i) => {
+      const border = i < allDomains.length - 1 ? 'border-bottom:1px solid #1e293b;' : '';
+      const bg = item.hero ? 'background:rgba(59,130,246,0.04);' : '';
+      return `<div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;${border}${bg}">
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-width:0;">
+          <span style="font-size:14px;font-weight:${item.hero ? '700' : '600'};color:white;">${item.d}</span>
+          <span style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:rgba(16,185,129,0.12);color:#34d399;border:1px solid rgba(16,185,129,0.25);">Free Year 1</span>
+          ${item.hero ? '<span style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:rgba(59,130,246,0.12);color:#60a5fa;border:1px solid rgba(59,130,246,0.25);">Best match</span>' : ''}
+        </div>
+        <button style="font-size:12px;font-weight:600;color:#60a5fa;background:none;border:none;cursor:pointer;margin-left:12px;white-space:nowrap;" onmouseover="this.style.color='#93c5fd'" onmouseout="this.style.color='#60a5fa'">Register</button>
+      </div>`;
+    }).join('');
+    container.style.display = 'block';
+  }
+  document.getElementById('new-domain-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') searchNewDomain();
+  });
+</script>
+
+<style>
+  @keyframes spin { to { transform: rotate(360deg); } }
+</style>
+
+</body>
+</html>
