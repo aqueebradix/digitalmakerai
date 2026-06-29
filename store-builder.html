@@ -22,6 +22,7 @@
     .color-option .selected-check { display: none; }
     .product-option.selected { border-color: #3b82f6; background-color: #0f172a; }
     .product-option.selected .option-icon { background-color: rgba(59,130,246,0.2); color: #60a5fa; }
+    @keyframes spin { to { transform: rotate(360deg); } }
   </style>
 </head>
 <body class="overflow-hidden" style="background:#020617;">
@@ -742,6 +743,17 @@
                     </button>
                   </div>
 
+                  <!-- DOMAIN LOADING STATE -->
+                  <div id="domain-loading-state" style="display:none;">
+                    <div class="flex flex-col items-center justify-center py-20 space-y-4">
+                      <div style="width:44px;height:44px;border-radius:50%;border:3px solid #1e293b;border-top-color:#3b82f6;animation:spin 0.8s linear infinite;"></div>
+                      <div class="text-center space-y-1">
+                        <p class="text-sm font-medium text-slate-300">Searching for available domains...</p>
+                        <p class="text-xs text-slate-600">Checking .store availability in real time</p>
+                      </div>
+                    </div>
+                  </div>
+
                   <!-- DOMAIN RESULTS STATE -->
                   <div id="domain-results-state" style="display:none;">
                     <div class="space-y-3 mb-3">
@@ -803,7 +815,7 @@
                         </div>
                         <span class="text-sm text-slate-400 leading-relaxed">I agree to create a domain account with Namify and accept their <span class="text-blue-400 underline underline-offset-2 cursor-pointer" onclick="event.stopPropagation()">legal terms</span>.</span>
                       </div>
-                      <button onclick="submitDomain()" class="w-full h-12 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-xl transition-colors">
+                      <button id="register-domain-btn" onclick="submitDomain()" class="w-full h-12 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-xl transition-colors flex items-center justify-center gap-2">
                         Register domain
                       </button>
                     </div>
@@ -989,27 +1001,32 @@
     if (!input) return;
     const name = input.toLowerCase().replace(/[^a-z0-9]/g, '').replace(/store$/, '') || 'mybrand';
     selectedDomain = name + '.store';
-    document.getElementById('result-hero-domain').textContent = selectedDomain;
 
-    const altNames = ['the' + name, name + 'co', 'my' + name, 'get' + name];
-    const list = document.getElementById('result-variations-list');
-    list.innerHTML = altNames.map((n, i) => {
-      const d = n + '.store';
-      const border = i < altNames.length - 1 ? 'border-bottom:1px solid #1e293b;' : '';
-      return `<div class="flex items-center justify-between px-5 py-3.5" style="${border}">
-        <div class="flex items-center gap-2 flex-wrap min-w-0">
-          <span class="text-sm font-semibold text-white">${d}</span>
-          <span class="text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-full shrink-0" style="background:rgba(16,185,129,0.15);color:#34d399;border:1px solid rgba(16,185,129,0.3);">Free Year 1</span>
-        </div>
-        <button onclick="selectedDomain='${d}';openPricingModal()" class="text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors ml-4 shrink-0">Register</button>
-      </div>`;
-    }).join('');
+    showDomainState('loading');
 
-    showDomainState('results');
+    setTimeout(() => {
+      document.getElementById('result-hero-domain').textContent = selectedDomain;
+
+      const altNames = ['the' + name, name + 'co', 'my' + name, 'get' + name];
+      const list = document.getElementById('result-variations-list');
+      list.innerHTML = altNames.map((n, i) => {
+        const d = n + '.store';
+        const border = i < altNames.length - 1 ? 'border-bottom:1px solid #1e293b;' : '';
+        return `<div class="flex items-center justify-between px-5 py-3.5" style="${border}">
+          <div class="flex items-center gap-2 flex-wrap min-w-0">
+            <span class="text-sm font-semibold text-white">${d}</span>
+            <span class="text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-full shrink-0" style="background:rgba(100,116,139,0.15);color:#94a3b8;border:1px solid rgba(100,116,139,0.3);">$49/year</span>
+          </div>
+          <button onclick="selectedDomain='${d}';openPricingModal()" class="text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors ml-4 shrink-0">Register</button>
+        </div>`;
+      }).join('');
+
+      showDomainState('results');
+    }, 2000);
   }
 
   function showDomainState(state) {
-    ['search','results','reg','success'].forEach(s => {
+    ['search','loading','results','reg','success'].forEach(s => {
       const el = document.getElementById('domain-' + s + '-state');
       if (el) el.style.display = (s === state) ? 'block' : 'none';
     });
@@ -1056,9 +1073,18 @@
   }
 
   function submitDomain() {
-    document.getElementById('success-domain-name').textContent = selectedDomain;
-    document.getElementById('success-domain-detail').textContent = selectedDomain;
-    showDomainState('success');
+    const btn = document.getElementById('register-domain-btn');
+    btn.disabled = true;
+    btn.style.background = '#1d4ed8';
+    btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="animation:spin 0.8s linear infinite"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> Registering...';
+    setTimeout(() => {
+      btn.disabled = false;
+      btn.style.background = '';
+      btn.innerHTML = 'Register domain';
+      document.getElementById('success-domain-name').textContent = selectedDomain;
+      document.getElementById('success-domain-detail').textContent = selectedDomain;
+      showDomainState('success');
+    }, 2000);
   }
 
   // Init
