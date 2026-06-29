@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Maker AI - Website Maker</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: { 'slate-950': '#020617' } } }
+    }
+  </script>
+  <style>
+    body { background-color: #020617; }
+    .scrollbar-hide::-webkit-scrollbar { display: none; }
+    .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+    .step-content { display: none; }
+    .step-content.active { display: block; }
+    .progress-fill { transition: width 0.5s ease; }
+    .color-option.selected { border-color: white; background-color: #0f172a; }
+    .color-option.selected .selected-check { display: flex; }
+    .color-option .selected-check { display: none; }
+    .product-option.selected { border-color: #3b82f6; background-color: #0f172a; }
+    .product-option.selected .option-icon { background-color: rgba(59,130,246,0.2); color: #60a5fa; }
+  </style>
+</head>
+<body class="overflow-hidden" style="background:#020617;">
+
+<div class="flex flex-col h-screen w-full overflow-hidden" style="background:#020617;">
+
+  <!-- Top Promo Banner -->
+  <div class="sticky top-0 z-50 w-full border-b border-blue-500/30 text-white shadow-md" style="background:linear-gradient(to right,#2563eb,#4f46e5);">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-10 flex items-center justify-between">
+      <div class="flex-1 flex justify-center items-center text-xs sm:text-sm font-medium tracking-wide">
+        <span class="hidden sm:inline">🔥 Don't miss out — Lock in up to 38% off Pro &amp; Premium before prices increase.</span>
+        <span class="sm:hidden">🔥 Lock in up to 38% off — prices increasing soon!</span>
+        <a class="ml-2 sm:ml-4 inline-flex items-center gap-1 font-bold underline underline-offset-2 hover:text-blue-200 transition-colors" href="index.html">View Plans
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+      <button class="ml-4 shrink-0 text-blue-200 hover:text-white transition-colors focus:outline-none p-1 rounded-md hover:bg-white/10" id="dismiss-banner">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Main layout -->
+  <div class="flex-1 flex overflow-hidden">
+
+    <!-- Sidebar -->
+    <div class="border-r border-slate-800 flex-col h-full flex-shrink-0 z-30 relative hidden md:flex" style="width:240px;background:#0f172a;">
+
+      <!-- Logo -->
+      <div class="p-4 border-b border-slate-800 flex-shrink-0 flex items-center h-16 justify-between">
+        <a class="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity min-w-0" href="index.html">
+          <div class="h-8 w-8 relative flex-shrink-0">
+            <svg viewBox="0 0 32 32" class="h-8 w-8"><rect width="32" height="32" rx="6" fill="#3b82f6"/><circle cx="16" cy="16" r="10" fill="none" stroke="white" stroke-width="1.5"/><path d="M16 6a14.5 14.5 0 0 1 0 20A14.5 14.5 0 0 1 16 6z" fill="white" opacity="0.3"/><path d="M6 16h20" stroke="white" stroke-width="1.5"/></svg>
+          </div>
+          <h1 class="text-lg font-bold text-white truncate">Digital Maker AI</h1>
+        </a>
+      </div>
+
+      <!-- Nav items -->
+      <div class="flex-1 flex flex-col min-h-0 overflow-hidden">
+        <div class="h-full overflow-y-auto scrollbar-hide">
+          <div class="p-3 space-y-6">
+            <div class="space-y-1">
+              <div class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 px-2">Tools</div>
+
+              <a href="index.html" class="w-full flex items-center rounded-lg text-sm font-medium gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500"><path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"/></svg>
+                <span class="truncate">Chat</span>
+              </a>
+              <button class="w-full flex items-center rounded-lg text-sm font-medium gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500"><path d="m21.64 3.64-1.28-1.28a1.21 1.21 0 0 0-1.72 0L2.36 18.64a1.21 1.21 0 0 0 0 1.72l1.28 1.28a1.2 1.2 0 0 0 1.72 0L21.64 5.36a1.2 1.2 0 0 0 0-1.72z"/><path d="m14 7 3 3"/><path d="M5 6v4"/><path d="M19 14v4"/><path d="M10 2v2"/><path d="M7 8H3"/><path d="M21 16h-4"/><path d="M11 3H9"/></svg>
+                <span class="truncate">Product Maker</span>
+              </button>
+              <button class="w-full flex items-center rounded-lg text-sm font-medium gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                <span class="truncate">Prompt Maker</span>
+              </button>
+              <button class="w-full flex items-center rounded-lg text-sm font-medium gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <span class="truncate">Product Research</span>
+              </button>
+              <button class="w-full flex items-center rounded-lg text-sm font-medium gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+                <span class="truncate">Competitor Analyzer</span>
+              </button>
+              <button class="w-full flex items-center rounded-lg text-sm font-medium gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"/><path d="M2 7h20"/></svg>
+                <span class="truncate">Store Finder</span>
+              </button>
+              <button class="w-full flex items-center rounded-lg text-sm font-medium gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg>
+                <span class="truncate">Faceless Finder</span>
+                <span class="ml-auto text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-md bg-green-500/15 text-green-400 border border-green-500/40">New</span>
+              </button>
+              <button class="w-full flex items-center rounded-lg text-sm font-medium gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500"><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7"/><line x1="16" x2="22" y1="5" y2="5"/><line x1="19" x2="19" y1="2" y2="8"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+                <span class="truncate">Image Maker</span>
+              </button>
+              <button class="w-full flex items-center rounded-lg text-sm font-medium gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500"><path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2" ry="2"/></svg>
+                <span class="truncate">Video Maker</span>
+              </button>
+              <button class="w-full flex items-center rounded-lg text-sm font-medium gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
+                <span class="truncate">Ad Library</span>
+              </button>
+
+              <!-- Website Maker - ACTIVE -->
+              <button class="w-full flex items-center rounded-lg text-sm font-medium gap-3 px-3 py-2.5 bg-blue-600 text-white shadow-lg shadow-blue-900/20">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-white"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                <span class="truncate">Website Maker</span>
+              </button>
+
+              <button class="w-full flex items-center rounded-lg text-sm font-medium gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg>
+                <span class="truncate">History</span>
+              </button>
+              <button class="w-full flex items-center rounded-lg text-sm font-medium gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                <span class="truncate">Tutorial</span>
+                <span class="ml-auto text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-md bg-green-500/15 text-green-400 border border-green-500/40">New</span>
+              </button>
+            </div>
+
+            <!-- Free Plan Usage -->
+            <div class="px-3 py-4 mx-2 rounded-xl border border-slate-800/60" style="background:rgba(15,23,42,0.4);">
+              <div class="flex items-center justify-between mb-3">
+                <h4 class="text-xs font-semibold text-slate-300 uppercase tracking-wider">Free Plan Usage</h4>
+                <span class="text-[10px] px-2 py-0.5 rounded-full font-bold text-white flex items-center gap-1 cursor-pointer" style="background:linear-gradient(to right,#2563eb,#4f46e5);">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>
+                  UPGRADE
+                </span>
+              </div>
+              <div class="space-y-3">
+                <div class="space-y-1.5">
+                  <div class="flex justify-between items-center text-xs"><span class="text-slate-400 font-medium">AI Chat</span><span class="text-slate-500">0/5</span></div>
+                  <div class="relative w-full overflow-hidden rounded-full h-1.5 bg-slate-800"><div class="h-full bg-blue-600 transition-all" style="width:0%"></div></div>
+                </div>
+                <div class="space-y-1.5">
+                  <div class="flex justify-between items-center text-xs"><span class="text-slate-400 font-medium">Prompts</span><span class="text-slate-500">0/3</span></div>
+                  <div class="relative w-full overflow-hidden rounded-full h-1.5 bg-slate-800"><div class="h-full bg-blue-600 transition-all" style="width:0%"></div></div>
+                </div>
+                <div class="space-y-1.5">
+                  <div class="flex justify-between items-center text-xs"><span class="text-slate-400 font-medium">Replication</span><span class="text-slate-500">0/1</span></div>
+                  <div class="relative w-full overflow-hidden rounded-full h-1.5 bg-slate-800"><div class="h-full bg-blue-600 transition-all" style="width:0%"></div></div>
+                </div>
+                <div class="space-y-1.5">
+                  <div class="flex justify-between items-center text-xs"><span class="text-slate-400 font-medium">Competitor</span><span class="text-slate-500">0/1</span></div>
+                  <div class="relative w-full overflow-hidden rounded-full h-1.5 bg-slate-800"><div class="h-full bg-blue-600 transition-all" style="width:0%"></div></div>
+                </div>
+              </div>
+              <p class="text-[9px] text-slate-600 text-center mt-3 italic">Usage resets every Monday</p>
+            </div>
+
+            <!-- Recent Chats -->
+            <div class="space-y-1">
+              <div class="flex items-center justify-between px-2 mb-2 py-1 hover:bg-slate-800/30 rounded-md cursor-pointer">
+                <div class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Recent Chats</div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500"><path d="m6 9 6 6 6-6"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- User Profile -->
+      <div class="border-t border-slate-800 flex-shrink-0 p-4" style="background:rgba(15,23,42,0.5);">
+        <div class="flex items-center gap-3 mb-4 px-2">
+          <div class="h-8 w-8 rounded-full flex items-center justify-center text-white text-xs font-bold shrink-0" style="background:linear-gradient(to bottom right,#3b82f6,#1d4ed8);">M</div>
+          <div class="flex-1 min-w-0">
+            <p class="text-sm font-medium text-white truncate">Mohammad Aqueeb</p>
+            <p class="text-xs font-medium text-slate-500">Free Plan</p>
+          </div>
+        </div>
+        <div class="space-y-1">
+          <button class="flex items-center text-sm font-medium h-9 rounded-md px-3 w-full justify-start text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+            Settings
+          </button>
+          <button class="flex items-center text-sm font-medium h-9 rounded-md px-3 w-full justify-start text-red-400 hover:text-red-300 hover:bg-red-950/30 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+            Sign Out
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col min-w-0 relative" style="background:#020617;">
+
+      <!-- Mobile header -->
+      <div class="md:hidden flex items-center justify-between p-4 border-b border-slate-800 flex-shrink-0 z-20" style="background:#0f172a;">
+        <div class="flex items-center gap-2">
+          <svg viewBox="0 0 32 32" class="h-6 w-6"><rect width="32" height="32" rx="6" fill="#3b82f6"/><circle cx="16" cy="16" r="10" fill="none" stroke="white" stroke-width="1.5"/><path d="M16 6a14.5 14.5 0 0 1 0 20A14.5 14.5 0 0 1 16 6z" fill="white" opacity="0.3"/><path d="M6 16h20" stroke="white" stroke-width="1.5"/></svg>
+          <span class="font-bold text-white">Digital Maker AI</span>
+        </div>
+        <button class="text-white p-2 hover:bg-slate-800 rounded">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+        </button>
+      </div>
+
+      <main class="flex-1 overflow-auto w-full">
+        <div class="min-h-full w-full flex flex-col items-center py-6 md:py-12 px-4 sm:px-6 lg:px-8 overflow-y-auto" style="background:#020617;">
+          <div class="max-w-4xl w-full flex flex-col items-center space-y-5 md:space-y-8">
+
+            <!-- Badge -->
+            <div>
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-slate-800 text-sm font-medium text-slate-300 shadow-sm" style="background:#0f172a;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-blue-500"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>
+                AI-Powered Store Maker
+              </span>
+            </div>
+
+            <!-- Title -->
+            <div class="text-center space-y-4">
+              <h1 class="text-3xl md:text-6xl font-bold tracking-tight">
+                <span class="text-white">Website </span>
+                <span class="bg-gradient-to-r from-blue-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent">Maker</span>
+              </h1>
+              <p class="text-base md:text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">Generate a complete Shopify store theme with photorealistic AI imagery, pre-written content, and a professional colour scheme, all tailored to your digital products.</p>
+            </div>
+
+            <!-- Feature pills -->
+            <div class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+              <div class="flex items-center gap-2 text-sm text-slate-400">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-emerald-500 flex-shrink-0"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+                <span>Complete Store Theme</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm text-slate-400">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-emerald-500 flex-shrink-0"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+                <span>Photorealistic AI Imagery</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm text-slate-400">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-emerald-500 flex-shrink-0"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+                <span>Pre-Written Content</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm text-slate-400">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-emerald-500 flex-shrink-0"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+                <span>Custom Colour Scheme</span>
+              </div>
+            </div>
+
+            <!-- Free plan usage bar -->
+            <div class="w-full max-w-3xl">
+              <div class="flex items-center justify-between px-4 py-2.5 rounded-xl border border-slate-800" style="background:rgba(15,23,42,0.5);">
+                <div class="flex items-center gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-400"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                  <span class="text-sm text-slate-300 font-medium">Free Plan</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <span id="gen-count" class="text-sm font-medium text-slate-400">0 / 3 lifetime free generations</span>
+                  <div class="w-24 h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                    <div id="gen-bar" class="h-full rounded-full bg-blue-500 transition-all" style="width:0%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step Progress Indicator -->
+            <div class="w-full max-w-3xl">
+              <div class="flex items-start justify-between relative">
+                <div class="absolute top-5 left-0 right-0 h-[2px] bg-slate-800 mx-10"></div>
+                <div id="progress-line" class="absolute top-5 left-0 right-0 h-[2px] mx-10 transition-all duration-500" style="transform:scaleX(0);transform-origin:left center;background:linear-gradient(to right,#3b82f6,#10b981);"></div>
+
+                <!-- Step 1 -->
+                <div class="flex flex-col items-center relative z-10">
+                  <div id="step-bubble-1" class="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 bg-blue-500 text-white ring-4 ring-blue-500/20">1</div>
+                  <span id="step-label-1" class="text-xs mt-2 font-medium text-center max-w-[70px] text-slate-300">Your Products</span>
+                </div>
+                <!-- Step 2 -->
+                <div class="flex flex-col items-center relative z-10">
+                  <div id="step-bubble-2" class="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 bg-slate-800 text-slate-500">2</div>
+                  <span id="step-label-2" class="text-xs mt-2 font-medium text-center max-w-[70px] text-slate-600">Your Audience</span>
+                </div>
+                <!-- Step 3 -->
+                <div class="flex flex-col items-center relative z-10">
+                  <div id="step-bubble-3" class="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 bg-slate-800 text-slate-500">3</div>
+                  <span id="step-label-3" class="text-xs mt-2 font-medium text-center max-w-[70px] text-slate-600">Pick Colour</span>
+                </div>
+                <!-- Step 4 -->
+                <div class="flex flex-col items-center relative z-10">
+                  <div id="step-bubble-4" class="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 bg-slate-800 text-slate-500">4</div>
+                  <span id="step-label-4" class="text-xs mt-2 font-medium text-center max-w-[70px] text-slate-600">Shopify Account</span>
+                </div>
+                <!-- Step 5 -->
+                <div class="flex flex-col items-center relative z-10">
+                  <div id="step-bubble-5" class="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 bg-slate-800 text-slate-500">5</div>
+                  <span id="step-label-5" class="text-xs mt-2 font-medium text-center max-w-[70px] text-slate-600">Generate</span>
+                </div>
+                <!-- Step 6 - Claim Domain (gift icon) -->
+                <div class="flex flex-col items-center relative z-10">
+                  <div id="step-bubble-6" class="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 bg-slate-800 text-slate-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 12 20 22 4 22 4 12"/><rect width="20" height="5" x="2" y="7"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+                  </div>
+                  <span id="step-label-6" class="text-xs mt-2 font-medium text-center max-w-[70px] text-slate-600">Claim Domain</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step Content Cards -->
+            <div class="w-full max-w-3xl">
+
+              <!-- ===== STEP 1 ===== -->
+              <div id="step-1" class="step-content active">
+                <div class="border border-slate-800 rounded-3xl p-6 md:p-8 relative overflow-hidden" style="background:linear-gradient(to bottom right,#0f172a,#020617);">
+                  <div class="absolute -top-24 -right-24 w-48 h-48 rounded-full blur-[80px]" style="background:rgba(59,130,246,0.1);"></div>
+                  <div class="absolute -bottom-24 -left-24 w-48 h-48 rounded-full blur-[80px]" style="background:rgba(16,185,129,0.1);"></div>
+                  <div class="relative z-10 space-y-5">
+                    <div class="flex items-center gap-3">
+                      <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:rgba(59,130,246,0.2);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-blue-400"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                      </div>
+                      <div>
+                        <h2 class="text-lg font-semibold text-white">What do you sell?</h2>
+                        <p class="text-sm text-slate-400">Pick the type of digital product you sell</p>
+                      </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                      <button onclick="selectProduct(this)" class="product-option relative rounded-xl p-4 border-2 border-slate-700 text-left transition-all hover:border-slate-600" style="background:#020617;">
+                        <div class="option-icon w-10 h-10 rounded-lg flex items-center justify-center mb-3 bg-slate-800 text-slate-400">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18"/><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M3 15h18"/></svg>
+                        </div>
+                        <p class="text-sm font-semibold text-white">Spreadsheets</p>
+                        <p class="text-xs text-slate-500 mt-0.5">Budget trackers, data tables</p>
+                      </button>
+                      <button onclick="selectProduct(this)" class="product-option relative rounded-xl p-4 border-2 border-slate-700 text-left transition-all hover:border-slate-600" style="background:#020617;">
+                        <div class="option-icon w-10 h-10 rounded-lg flex items-center justify-center mb-3 bg-slate-800 text-slate-400">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+                        </div>
+                        <p class="text-sm font-semibold text-white">Digital Planners</p>
+                        <p class="text-xs text-slate-500 mt-0.5">Yearly, daily, goal planners</p>
+                      </button>
+                      <button onclick="selectProduct(this)" class="product-option relative rounded-xl p-4 border-2 border-slate-700 text-left transition-all hover:border-slate-600" style="background:#020617;">
+                        <div class="option-icon w-10 h-10 rounded-lg flex items-center justify-center mb-3 bg-slate-800 text-slate-400">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                        </div>
+                        <p class="text-sm font-semibold text-white">Ebooks</p>
+                        <p class="text-xs text-slate-500 mt-0.5">PDF guides and books</p>
+                      </button>
+                      <button onclick="selectProduct(this)" class="product-option relative rounded-xl p-4 border-2 border-slate-700 text-left transition-all hover:border-slate-600" style="background:#020617;">
+                        <div class="option-icon w-10 h-10 rounded-lg flex items-center justify-center mb-3 bg-slate-800 text-slate-400">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                        </div>
+                        <p class="text-sm font-semibold text-white">Courses</p>
+                        <p class="text-xs text-slate-500 mt-0.5">Video courses, masterclasses</p>
+                      </button>
+                      <button onclick="selectProduct(this)" class="product-option relative rounded-xl p-4 border-2 border-slate-700 text-left transition-all hover:border-slate-600" style="background:#020617;">
+                        <div class="option-icon w-10 h-10 rounded-lg flex items-center justify-center mb-3 bg-slate-800 text-slate-400">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="7" x="3" y="3" rx="1"/><rect width="9" height="7" x="3" y="14" rx="1"/><rect width="5" height="7" x="16" y="14" rx="1"/></svg>
+                        </div>
+                        <p class="text-sm font-semibold text-white">Templates</p>
+                        <p class="text-xs text-slate-500 mt-0.5">Resume, design, social, business</p>
+                      </button>
+                      <button onclick="selectProduct(this)" class="product-option relative rounded-xl p-4 border-2 border-slate-700 text-left transition-all hover:border-slate-600" style="background:#020617;">
+                        <div class="option-icon w-10 h-10 rounded-lg flex items-center justify-center mb-3 bg-slate-800 text-slate-400">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg>
+                        </div>
+                        <p class="text-sm font-semibold text-white">Notion Templates</p>
+                        <p class="text-xs text-slate-500 mt-0.5">Dashboards, systems, OS</p>
+                      </button>
+                      <button onclick="selectProduct(this)" class="product-option relative rounded-xl p-4 border-2 border-slate-700 text-left transition-all hover:border-slate-600" style="background:#020617;">
+                        <div class="option-icon w-10 h-10 rounded-lg flex items-center justify-center mb-3 bg-slate-800 text-slate-400">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+                        </div>
+                        <p class="text-sm font-semibold text-white">Printables</p>
+                        <p class="text-xs text-slate-500 mt-0.5">Worksheets, coloring, stickers</p>
+                      </button>
+                    </div>
+
+                    <div class="space-y-2 pt-2">
+                      <label class="text-xs text-slate-500 font-medium">Anything specific? (optional)</label>
+                      <input type="text" placeholder="e.g. budget trackers, 2026 yearly planners, resume templates for designers" class="w-full h-12 px-4 rounded-xl text-slate-200 text-sm placeholder-slate-600 outline-none focus:border-blue-500 transition-colors" style="background:#020617;border:1px solid #334155;">
+                    </div>
+                    <div class="space-y-2">
+                      <label class="text-xs text-slate-500 font-medium">Store Name (optional)</label>
+                      <input type="text" placeholder="e.g. Business Planner Hub" class="w-full h-12 px-4 rounded-xl text-slate-200 text-sm placeholder-slate-600 outline-none focus:border-blue-500 transition-colors" style="background:#020617;border:1px solid #334155;">
+                    </div>
+
+                    <button onclick="nextStep()" id="step1-continue" class="inline-flex items-center justify-center w-full h-12 bg-blue-600 hover:bg-blue-500 text-white font-semibold text-base rounded-xl transition-colors">
+                      <span class="flex items-center gap-2">Continue<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ===== STEP 2 ===== -->
+              <div id="step-2" class="step-content">
+                <div class="border border-slate-800 rounded-3xl p-6 md:p-8 relative overflow-hidden" style="background:linear-gradient(to bottom right,#0f172a,#020617);">
+                  <div class="absolute -top-24 -right-24 w-48 h-48 rounded-full blur-[80px]" style="background:rgba(16,185,129,0.1);"></div>
+                  <div class="absolute -bottom-24 -left-24 w-48 h-48 rounded-full blur-[80px]" style="background:rgba(59,130,246,0.1);"></div>
+                  <div class="relative z-10 space-y-5">
+                    <div class="flex items-center gap-3">
+                      <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:rgba(16,185,129,0.2);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-emerald-400"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                      </div>
+                      <div>
+                        <h2 class="text-lg font-semibold text-white">Who is your audience?</h2>
+                        <p class="text-sm text-slate-400">Describe who your products are for</p>
+                      </div>
+                    </div>
+
+                    <input type="text" placeholder="e.g. busy professionals, new moms, small business owners, students" class="w-full h-14 px-4 rounded-xl text-slate-200 text-sm placeholder-slate-600 outline-none focus:border-blue-500 transition-colors" style="background:#020617;border:1px solid #334155;">
+
+                    <div class="flex gap-3">
+                      <button onclick="prevStep()" class="inline-flex items-center justify-center text-sm font-medium h-12 px-6 border border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white rounded-xl transition-colors" style="background:transparent;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-1"><path d="m15 18-6-6 6-6"/></svg>Back
+                      </button>
+                      <button onclick="nextStep()" class="inline-flex items-center justify-center flex-1 h-12 bg-blue-600 hover:bg-blue-500 text-white font-semibold text-base rounded-xl transition-colors">
+                        <span class="flex items-center gap-2">Continue<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ===== STEP 3 ===== -->
+              <div id="step-3" class="step-content">
+                <div class="border border-slate-800 rounded-3xl p-6 md:p-8 relative overflow-hidden" style="background:linear-gradient(to bottom right,#0f172a,#020617);">
+                  <div class="absolute -top-24 -right-24 w-48 h-48 rounded-full blur-[80px]" style="background:rgba(236,72,153,0.1);"></div>
+                  <div class="absolute -bottom-24 -left-24 w-48 h-48 rounded-full blur-[80px]" style="background:rgba(245,158,11,0.1);"></div>
+                  <div class="relative z-10 space-y-5">
+                    <div class="flex items-center gap-3">
+                      <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:rgba(236,72,153,0.2);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-pink-400"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>
+                      </div>
+                      <div>
+                        <h2 class="text-lg font-semibold text-white">Pick your brand colour</h2>
+                        <p class="text-sm text-slate-400">This colour will be used across your store and banner imagery</p>
+                      </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                      <!-- Blue (default selected) -->
+                      <button onclick="selectColor(this)" class="color-option selected relative rounded-xl p-4 border-2 text-left transition-all" style="background:#0f172a;">
+                        <div class="flex gap-1.5 mb-3">
+                          <div class="w-8 h-8 rounded-lg border border-slate-700" style="background:rgb(30,64,175);"></div>
+                          <div class="w-8 h-8 rounded-lg border border-slate-700" style="background:rgb(59,130,246);"></div>
+                          <div class="w-8 h-8 rounded-lg border border-slate-700" style="background:rgb(255,255,255);"></div>
+                        </div>
+                        <p class="text-sm font-semibold text-white">Blue</p>
+                        <p class="text-xs text-slate-500 mt-0.5">Professional and trustworthy</p>
+                        <div class="selected-check absolute top-2 right-2 w-5 h-5 rounded-full bg-emerald-500 items-center justify-center">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-white"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+                        </div>
+                      </button>
+                      <button onclick="selectColor(this)" class="color-option relative rounded-xl p-4 border-2 border-slate-700 text-left transition-all hover:border-slate-600" style="background:#020617;">
+                        <div class="flex gap-1.5 mb-3">
+                          <div class="w-8 h-8 rounded-lg border border-slate-700" style="background:rgb(146,64,14);"></div>
+                          <div class="w-8 h-8 rounded-lg border border-slate-700" style="background:rgb(217,119,6);"></div>
+                          <div class="w-8 h-8 rounded-lg border border-slate-700" style="background:rgb(254,247,237);"></div>
+                        </div>
+                        <p class="text-sm font-semibold text-white">Cream</p>
+                        <p class="text-xs text-slate-500 mt-0.5">Warm and editorial</p>
+                        <div class="selected-check absolute top-2 right-2 w-5 h-5 rounded-full bg-emerald-500 items-center justify-center">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-white"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+                        </div>
+                      </button>
+                      <button onclick="selectColor(this)" class="color-option relative rounded-xl p-4 border-2 border-slate-700 text-left transition-all hover:border-slate-600" style="background:#020617;">
+                        <div class="flex gap-1.5 mb-3">
+                          <div class="w-8 h-8 rounded-lg border border-slate-700" style="background:rgb(22,101,52);"></div>
+                          <div class="w-8 h-8 rounded-lg border border-slate-700" style="background:rgb(22,163,74);"></div>
+                          <div class="w-8 h-8 rounded-lg border border-slate-700" style="background:rgb(240,253,244);"></div>
+                        </div>
+                        <p class="text-sm font-semibold text-white">Green</p>
+                        <p class="text-xs text-slate-500 mt-0.5">Natural and premium</p>
+                        <div class="selected-check absolute top-2 right-2 w-5 h-5 rounded-full bg-emerald-500 items-center justify-center">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-white"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+                        </div>
+                      </button>
+                      <button onclick="selectColor(this)" class="color-option relative rounded-xl p-4 border-2 border-slate-700 text-left transition-all hover:border-slate-600" style="background:#020617;">
+                        <div class="flex gap-1.5 mb-3">
+                          <div class="w-8 h-8 rounded-lg border border-slate-700" style="background:rgb(190,24,93);"></div>
+                          <div class="w-8 h-8 rounded-lg border border-slate-700" style="background:rgb(236,72,153);"></div>
+                          <div class="w-8 h-8 rounded-lg border border-slate-700" style="background:rgb(253,242,248);"></div>
+                        </div>
+                        <p class="text-sm font-semibold text-white">Pink</p>
+                        <p class="text-xs text-slate-500 mt-0.5">Soft and feminine</p>
+                        <div class="selected-check absolute top-2 right-2 w-5 h-5 rounded-full bg-emerald-500 items-center justify-center">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-white"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+                        </div>
+                      </button>
+                      <button onclick="selectColor(this)" class="color-option relative rounded-xl p-4 border-2 border-slate-700 text-left transition-all hover:border-slate-600" style="background:#020617;">
+                        <div class="flex gap-1.5 mb-3">
+                          <div class="w-8 h-8 rounded-lg border border-slate-700" style="background:rgb(23,23,23);"></div>
+                          <div class="w-8 h-8 rounded-lg border border-slate-700" style="background:rgb(220,38,38);"></div>
+                          <div class="w-8 h-8 rounded-lg border border-slate-700" style="background:rgb(250,250,250);"></div>
+                        </div>
+                        <p class="text-sm font-semibold text-white">Black</p>
+                        <p class="text-xs text-slate-500 mt-0.5">Bold and minimalist</p>
+                        <div class="selected-check absolute top-2 right-2 w-5 h-5 rounded-full bg-emerald-500 items-center justify-center">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-white"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+                        </div>
+                      </button>
+                      <button onclick="selectColor(this)" class="color-option relative rounded-xl p-4 border-2 border-slate-700 text-left transition-all hover:border-slate-600" style="background:#020617;">
+                        <div class="flex gap-1.5 mb-3">
+                          <div class="w-8 h-8 rounded-lg border border-slate-700" style="background:rgb(15,118,110);"></div>
+                          <div class="w-8 h-8 rounded-lg border border-slate-700" style="background:rgb(20,184,166);"></div>
+                          <div class="w-8 h-8 rounded-lg border border-slate-700" style="background:rgb(240,253,250);"></div>
+                        </div>
+                        <p class="text-sm font-semibold text-white">Teal</p>
+                        <p class="text-xs text-slate-500 mt-0.5">Fresh and modern</p>
+                        <div class="selected-check absolute top-2 right-2 w-5 h-5 rounded-full bg-emerald-500 items-center justify-center">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-white"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+                        </div>
+                      </button>
+                    </div>
+
+                    <div class="flex gap-3">
+                      <button onclick="prevStep()" class="inline-flex items-center justify-center text-sm font-medium h-12 px-6 border border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white rounded-xl transition-colors" style="background:transparent;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-1"><path d="m15 18-6-6 6-6"/></svg>Back
+                      </button>
+                      <button onclick="nextStep()" class="inline-flex items-center justify-center flex-1 h-12 bg-blue-600 hover:bg-blue-500 text-white font-semibold text-base rounded-xl transition-colors">
+                        <span class="flex items-center gap-2">Continue<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ===== STEP 4 ===== -->
+              <div id="step-4" class="step-content">
+                <div class="border border-slate-800 rounded-3xl p-6 md:p-8 relative overflow-hidden" style="background:linear-gradient(to bottom right,#0f172a,#020617);">
+                  <div class="absolute -top-24 -right-24 w-48 h-48 rounded-full blur-[80px]" style="background:rgba(16,185,129,0.1);"></div>
+                  <div class="absolute -bottom-24 -left-24 w-48 h-48 rounded-full blur-[80px]" style="background:rgba(59,130,246,0.1);"></div>
+                  <div class="relative z-10 space-y-6">
+                    <div class="flex items-center gap-3">
+                      <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:rgba(16,185,129,0.2);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-emerald-400"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                      </div>
+                      <div>
+                        <h2 class="text-lg font-semibold text-white">Sign up to Shopify</h2>
+                        <p class="text-sm text-slate-400">Get a 30-day trial for only $1 to host your store</p>
+                      </div>
+                    </div>
+
+                    <div class="rounded-2xl p-5 text-center space-y-2" style="background:linear-gradient(to right,rgba(6,78,59,0.6),rgba(30,58,138,0.6));border:1px solid rgba(6,78,59,0.4);">
+                      <p class="text-2xl font-bold text-white">30-Day Shopify Trial</p>
+                      <p class="text-4xl font-black bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">Only $1</p>
+                      <p class="text-sm text-slate-400">Start selling your digital products today</p>
+                    </div>
+
+                    <a href="#" class="flex items-center justify-center gap-2 w-full h-12 font-semibold text-base rounded-xl transition-colors text-white" style="background:#96bf48;">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
+                      Sign Up to Shopify
+                    </a>
+
+                    <label class="flex items-start gap-3 cursor-pointer group" id="shopify-check-label">
+                      <div class="mt-0.5">
+                        <input type="checkbox" id="shopify-checkbox" class="sr-only" onchange="toggleShopifyCheck()">
+                        <div id="check-box" class="w-5 h-5 rounded-md border-2 flex items-center justify-center transition-all border-slate-600 group-hover:border-slate-500"></div>
+                      </div>
+                      <span class="text-sm text-slate-300 leading-relaxed">I have signed up for a Shopify account and activated the Basic plan</span>
+                    </label>
+
+                    <div class="flex gap-3">
+                      <button onclick="prevStep()" class="inline-flex items-center justify-center text-sm font-medium h-12 px-6 border border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white rounded-xl transition-colors" style="background:transparent;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-1"><path d="m15 18-6-6 6-6"/></svg>Back
+                      </button>
+                      <button onclick="nextStep()" id="step4-continue" class="inline-flex items-center justify-center flex-1 h-12 bg-blue-600 hover:bg-blue-500 text-white font-semibold text-base rounded-xl transition-colors">
+                        <span class="flex items-center gap-2">Continue<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ===== STEP 5 ===== -->
+              <div id="step-5" class="step-content">
+                <div class="border border-slate-800 rounded-3xl p-6 md:p-8 relative overflow-hidden" style="background:linear-gradient(to bottom right,#0f172a,#020617);">
+                  <div class="absolute -top-24 -right-24 w-48 h-48 rounded-full blur-[80px]" style="background:rgba(59,130,246,0.1);"></div>
+                  <div class="relative z-10 space-y-6">
+                    <div class="flex items-center gap-3">
+                      <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:rgba(59,130,246,0.2);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-blue-400"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>
+                      </div>
+                      <div>
+                        <h2 class="text-lg font-semibold text-white">Review and Generate</h2>
+                        <p class="text-sm text-slate-400">Confirm your choices before we generate</p>
+                      </div>
+                    </div>
+
+                    <div class="rounded-2xl p-5 space-y-3" style="background:rgba(2,6,23,0.7);border:1px solid #1e293b;">
+                      <div class="flex justify-between"><span class="text-xs text-slate-500">Product type</span><span class="text-sm text-slate-300">Ebooks</span></div>
+                      <div class="flex justify-between"><span class="text-xs text-slate-500">Audience</span><span class="text-sm text-slate-300">Students</span></div>
+                      <div class="flex justify-between items-center">
+                        <span class="text-xs text-slate-500">Colour</span>
+                        <div class="flex items-center gap-2">
+                          <div class="flex gap-1">
+                            <div class="w-4 h-4 rounded" style="background:rgb(30,64,175);"></div>
+                            <div class="w-4 h-4 rounded" style="background:rgb(59,130,246);"></div>
+                          </div>
+                          <span class="text-sm text-slate-300">Blue</span>
+                        </div>
+                      </div>
+                      <div class="flex justify-between"><span class="text-xs text-slate-500">Store name</span><span class="text-sm text-slate-300">Budget Tracker</span></div>
+                    </div>
+
+                    <div class="rounded-2xl p-5 space-y-3" style="background:rgba(2,6,23,0.7);border:1px solid #1e293b;">
+                      <p class="text-slate-300 text-sm leading-relaxed">Do you have an active Shopify Basic account ready? Your generated theme will need to be uploaded to Shopify.</p>
+                      <div class="flex flex-col sm:flex-row gap-3">
+                        <button class="flex-1 flex items-center justify-center gap-2 px-5 py-4 rounded-xl border-2 text-sm font-semibold transition-all border-slate-700 text-slate-400 hover:border-slate-600 hover:text-slate-300" style="background:#020617;">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-600"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+                          Yes, my account is ready
+                        </button>
+                        <button class="flex-1 flex items-center justify-center gap-2 px-5 py-4 rounded-xl border-2 text-sm font-semibold transition-all border-slate-700 text-slate-400 hover:border-slate-600 hover:text-slate-300" style="background:#020617;">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-600"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
+                          No, take me back
+                        </button>
+                      </div>
+                    </div>
+
+                    <div class="flex gap-3">
+                      <button onclick="prevStep()" class="inline-flex items-center justify-center text-sm font-medium h-12 px-6 border border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white rounded-xl transition-colors" style="background:transparent;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-1"><path d="m15 18-6-6 6-6"/></svg>Back
+                      </button>
+                      <button onclick="nextStep()" class="inline-flex items-center justify-center flex-1 h-12 text-white font-semibold text-base rounded-xl transition-colors" style="background:linear-gradient(to right,#2563eb,#059669);">
+                        <span class="flex items-center gap-2">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>
+                          Generate My Store Theme
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ===== STEP 6 — DOWNLOAD & INSTALL ===== -->
+              <div id="step-6" class="step-content">
+                <div class="space-y-4">
+
+                  <!-- Download card -->
+                  <div id="download-card" class="rounded-2xl p-6 space-y-4" style="background:rgba(23,37,84,0.5);border:1px solid rgba(59,130,246,0.3);">
+                    <div class="flex items-start gap-3">
+                      <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgba(59,130,246,0.2);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-blue-400"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                      </div>
+                      <div>
+                        <h3 class="text-white font-semibold">Your theme is downloading...</h3>
+                        <p class="text-sm text-slate-400 mt-0.5">Finish the following steps to install it in Shopify — and <span class="text-blue-400 font-medium">claim a free .store domain</span> once your installation is complete.</p>
+                      </div>
+                    </div>
+
+                    <div class="rounded-xl p-4 space-y-3" style="background:rgba(2,6,23,0.5);">
+                      <div>
+                        <p class="text-xs text-slate-500 mb-2 font-medium">Collections</p>
+                        <div class="flex flex-wrap gap-2">
+                          <span class="text-xs px-3 py-1 rounded-full" style="background:rgba(30,58,138,0.5);color:#93c5fd;border:1px solid rgba(30,58,138,0.3);">Budgeting Basics</span>
+                          <span class="text-xs px-3 py-1 rounded-full" style="background:rgba(30,58,138,0.5);color:#93c5fd;border:1px solid rgba(30,58,138,0.3);">Student Finance</span>
+                          <span class="text-xs px-3 py-1 rounded-full" style="background:rgba(30,58,138,0.5);color:#93c5fd;border:1px solid rgba(30,58,138,0.3);">Debt Free Guides</span>
+                          <span class="text-xs px-3 py-1 rounded-full" style="background:rgba(30,58,138,0.5);color:#93c5fd;border:1px solid rgba(30,58,138,0.3);">Side Hustle Ebooks</span>
+                        </div>
+                      </div>
+                      <div>
+                        <p class="text-xs text-slate-500 mb-2 font-medium">Colour Scheme: Blue</p>
+                        <div class="flex gap-2">
+                          <div class="flex items-center gap-1.5"><div class="w-5 h-5 rounded-md border border-slate-700" style="background:rgb(30,64,175);"></div><span class="text-xs text-slate-500">primary</span></div>
+                          <div class="flex items-center gap-1.5"><div class="w-5 h-5 rounded-md border border-slate-700" style="background:rgb(59,130,246);"></div><span class="text-xs text-slate-500">accent</span></div>
+                          <div class="flex items-center gap-1.5"><div class="w-5 h-5 rounded-md border border-slate-700" style="background:rgb(96,165,250);"></div><span class="text-xs text-slate-500">accent2</span></div>
+                          <div class="flex items-center gap-1.5"><div class="w-5 h-5 rounded-md border border-slate-700" style="background:rgb(255,255,255);"></div><span class="text-xs text-slate-500">bg</span></div>
+                          <div class="flex items-center gap-1.5"><div class="w-5 h-5 rounded-md border border-slate-700" style="background:rgb(15,26,46);"></div><span class="text-xs text-slate-500">dark</span></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <button id="download-btn" onclick="markDownloaded()" class="inline-flex items-center justify-center w-full h-12 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-base rounded-xl transition-colors">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                      Download Theme ZIP
+                    </button>
+                    <button class="inline-flex items-center justify-center text-sm font-medium w-full h-11 border border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white rounded-xl transition-colors" style="background:transparent;">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg>
+                      Not happy with the banners? Regenerate
+                    </button>
+                    <p class="text-xs text-slate-500 text-center">2 generations remaining on free plan</p>
+                  </div>
+
+                  <!-- Setup guide -->
+                  <div class="rounded-2xl p-5" style="background:#0f172a;border:1px solid #1e293b;">
+                    <h4 class="text-white font-semibold text-sm mb-3 flex items-center gap-2">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-400"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/><line x1="10" x2="8" y1="9" y2="9"/></svg>
+                      Quick Setup Guide
+                    </h4>
+                    <div class="space-y-2">
+                      <div class="flex items-start gap-3 text-sm"><span class="flex-shrink-0 w-5 h-5 rounded-full bg-slate-800 text-slate-400 text-xs flex items-center justify-center font-medium mt-0.5">1</span><span class="text-slate-400">Go to Shopify Admin &gt; Online Store &gt; Themes</span></div>
+                      <div class="flex items-start gap-3 text-sm"><span class="flex-shrink-0 w-5 h-5 rounded-full bg-slate-800 text-slate-400 text-xs flex items-center justify-center font-medium mt-0.5">2</span><span class="text-slate-400">Click Add theme, then Upload ZIP file</span></div>
+                      <div class="flex items-start gap-3 text-sm"><span class="flex-shrink-0 w-5 h-5 rounded-full bg-slate-800 text-slate-400 text-xs flex items-center justify-center font-medium mt-0.5">3</span><span class="text-slate-400">Upload the downloaded ZIP and publish it</span></div>
+                      <div class="flex items-start gap-3 text-sm"><span class="flex-shrink-0 w-5 h-5 rounded-full bg-slate-800 text-slate-400 text-xs flex items-center justify-center font-medium mt-0.5">4</span><span class="text-slate-400">Go to Pages, add About Us, select the about template</span></div>
+                      <div class="flex items-start gap-3 text-sm"><span class="flex-shrink-0 w-5 h-5 rounded-full bg-slate-800 text-slate-400 text-xs flex items-center justify-center font-medium mt-0.5">5</span><span class="text-slate-400">Start adding your products!</span></div>
+                    </div>
+                  </div>
+
+                  <!-- Mark installation complete CTA -->
+                  <button onclick="nextStep()" class="inline-flex items-center justify-center w-full h-14 text-white font-semibold text-base rounded-xl transition-all hover:scale-[1.01] shadow-lg shadow-blue-900/30" style="background:linear-gradient(to right,#2563eb,#4f46e5);">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+                    Mark Installation Complete
+                  </button>
+                  <p class="text-xs text-slate-600 text-center -mt-2">Done installing? Click above to claim your free domain</p>
+
+                </div>
+              </div>
+
+              <!-- ===== STEP 7 — CLAIM FREE DOMAIN ===== -->
+              <div id="step-7" class="step-content">
+                <div class="space-y-4">
+
+                  <!-- DOMAIN SEARCH STATE -->
+                  <div id="domain-search-state">
+                    <div class="text-center mb-5">
+                      <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl mb-3" style="background:rgba(59,130,246,0.12);border:1px solid rgba(59,130,246,0.25);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-blue-400"><polyline points="20 12 20 22 4 22 4 12"/><rect width="20" height="5" x="2" y="7"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+                      </div>
+                      <h2 class="text-2xl md:text-3xl font-bold text-white">Claim Your Free Domain</h2>
+                      <p class="text-slate-400 mt-2 text-sm md:text-base max-w-sm mx-auto">Your store deserves its own address. Find your free .store domain below — first year on us.</p>
+                    </div>
+                    <div class="border border-slate-700/60 rounded-2xl p-6" style="background:linear-gradient(to bottom right,#0f172a,#020617);">
+                      <h3 class="text-xl font-bold text-white">Find your name. <span style="color:#facc15;">⚡</span></h3>
+                      <p class="text-sm text-slate-500 mt-0.5 mb-4">Instant availability. No fuss.</p>
+                      <div class="flex gap-2">
+                        <input id="domain-search-input" type="text" placeholder="e.g. mybrandname"
+                          class="flex-1 h-12 px-4 rounded-xl text-slate-200 text-sm placeholder-slate-600 outline-none transition-colors"
+                          style="background:#020617;border:1px solid #334155;"
+                          onfocus="this.style.borderColor='#3b82f6'" onblur="this.style.borderColor='#334155'"
+                          onkeydown="if(event.key==='Enter')searchDomains()">
+                        <button onclick="searchDomains()" class="h-12 px-5 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-xl transition-colors flex items-center gap-2 shrink-0">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                          Search
+                        </button>
+                      </div>
+                      <div class="flex flex-wrap gap-2 mt-3">
+                        <span class="text-xs text-slate-500 px-3 py-1 rounded-full" style="border:1px solid #1e293b;background:rgba(15,23,42,0.6);">Keep it under 15 characters</span>
+                        <span class="text-xs text-slate-500 px-3 py-1 rounded-full" style="border:1px solid #1e293b;background:rgba(15,23,42,0.6);">Avoid hyphens &amp; numbers</span>
+                        <span class="text-xs text-slate-500 px-3 py-1 rounded-full" style="border:1px solid #1e293b;background:rgba(15,23,42,0.6);">Start with your brand name</span>
+                      </div>
+                    </div>
+                    <button onclick="prevStep()" class="mt-3 flex items-center gap-1 text-sm text-slate-500 hover:text-slate-300 transition-colors">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+                      Back to installation
+                    </button>
+                  </div>
+
+                  <!-- DOMAIN RESULTS STATE -->
+                  <div id="domain-results-state" style="display:none;">
+                    <div class="space-y-3 mb-3">
+                      <p class="text-[10px] font-bold uppercase tracking-widest text-slate-500">Results for your search</p>
+                      <!-- Hero exact match -->
+                      <div class="rounded-2xl p-5" style="background:linear-gradient(135deg,rgba(37,99,235,0.1),rgba(16,185,129,0.1));border:1px solid rgba(37,99,235,0.4);">
+                        <div class="flex items-center justify-between gap-4 flex-wrap">
+                          <div class="min-w-0">
+                            <div class="flex items-center gap-2 flex-wrap mb-1">
+                              <span id="result-hero-domain" class="text-xl font-bold text-white">budgettracker.store</span>
+                              <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full shrink-0" style="background:rgba(16,185,129,0.2);color:#34d399;border:1px solid rgba(16,185,129,0.3);">1<sup>st</sup> Year Free</span>
+                            </div>
+                            <p class="text-sm text-slate-400">Free for first year · then $49/yr · Exact match</p>
+                          </div>
+                          <button onclick="openPricingModal()" class="shrink-0 h-11 px-5 text-white font-semibold rounded-xl transition-colors flex items-center gap-1.5 text-sm" style="background:#3b82f6;" onmouseover="this.style.background='#2563eb'" onmouseout="this.style.background='#3b82f6'">
+                            Register
+                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                          </button>
+                        </div>
+                      </div>
+                      <!-- Variations list -->
+                      <div class="rounded-2xl overflow-hidden" style="background:#0f172a;border:1px solid #1e293b;">
+                        <div id="result-variations-list"></div>
+                      </div>
+                    </div>
+                    <button onclick="backToSearch()" class="flex items-center gap-1 text-sm text-slate-500 hover:text-slate-300 transition-colors">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+                      Search again
+                    </button>
+                  </div>
+
+                  <!-- DOMAIN REGISTRATION FORM STATE -->
+                  <div id="domain-reg-state" style="display:none;">
+                    <div class="border border-slate-800 rounded-2xl p-6 space-y-5" style="background:linear-gradient(to bottom right,#0f172a,#020617);">
+                      <div>
+                        <p class="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-1.5">Registering</p>
+                        <div class="flex items-center gap-2 flex-wrap">
+                          <span id="reg-domain-display" class="text-xl font-bold text-white">budgettracker.store</span>
+                          <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full" style="background:rgba(16,185,129,0.2);color:#34d399;border:1px solid rgba(16,185,129,0.3);">Free for first year</span>
+                        </div>
+                      </div>
+                      <div class="grid grid-cols-2 gap-3">
+                        <div class="space-y-1.5">
+                          <label class="text-xs font-medium text-slate-500">First name</label>
+                          <input type="text" value="Mohammad" class="w-full h-11 px-3 rounded-xl text-slate-200 text-sm outline-none transition-colors" style="background:#020617;border:1px solid #334155;" onfocus="this.style.borderColor='#3b82f6'" onblur="this.style.borderColor='#334155'">
+                        </div>
+                        <div class="space-y-1.5">
+                          <label class="text-xs font-medium text-slate-500">Last name</label>
+                          <input type="text" value="Aqueeb" class="w-full h-11 px-3 rounded-xl text-slate-200 text-sm outline-none transition-colors" style="background:#020617;border:1px solid #334155;" onfocus="this.style.borderColor='#3b82f6'" onblur="this.style.borderColor='#334155'">
+                        </div>
+                      </div>
+                      <div class="space-y-1.5">
+                        <label class="text-xs font-medium text-slate-500">Email</label>
+                        <input type="email" value="aqueeb@radix.email" class="w-full h-11 px-3 rounded-xl text-slate-200 text-sm outline-none transition-colors" style="background:#020617;border:1px solid #334155;" onfocus="this.style.borderColor='#3b82f6'" onblur="this.style.borderColor='#334155'">
+                      </div>
+                      <div class="flex items-start gap-3" style="cursor:pointer;user-select:none;" onclick="toggleDomainConsent()">
+                        <div id="domain-consent-box" style="width:20px;height:20px;min-width:20px;min-height:20px;flex-shrink:0;margin-top:2px;border-radius:5px;border:2px solid #475569;background:transparent;display:flex;align-items:center;justify-content:center;transition:background 0.15s,border-color 0.15s;">
+                          <svg id="domain-consent-check" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" style="opacity:0;transition:opacity 0.1s;display:block;flex-shrink:0;"><path d="M20 6 9 17l-5-5"/></svg>
+                        </div>
+                        <span class="text-sm text-slate-400 leading-relaxed">I agree to create a domain account with Namify and accept their <span class="text-blue-400 underline underline-offset-2 cursor-pointer" onclick="event.stopPropagation()">legal terms</span>.</span>
+                      </div>
+                      <button onclick="submitDomain()" class="w-full h-12 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-xl transition-colors">
+                        Register domain
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- DOMAIN SUCCESS STATE -->
+                  <div id="domain-success-state" style="display:none;">
+                    <div class="border border-slate-800 rounded-2xl overflow-hidden">
+                      <div class="p-6" style="background:linear-gradient(to right,rgba(6,78,59,0.4),rgba(4,47,46,0.2),#0f172a);">
+                        <div class="flex items-center gap-3">
+                          <div class="w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(16,185,129,0.2);">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-emerald-400"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+                          </div>
+                          <div>
+                            <p class="text-lg font-bold text-white">Domain registered!</p>
+                            <p class="text-sm text-emerald-400 font-medium"><span id="success-domain-name">budgettracker.store</span> is now yours</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="p-6 space-y-4" style="background:#0f172a;">
+                        <p class="text-sm text-slate-300 leading-relaxed">Your domain is registered and auto connected to your Digital Maker AI store. Visit <span class="text-blue-400 font-medium cursor-pointer">My domains</span> to manage it.</p>
+                        <div class="rounded-xl p-4 space-y-2.5" style="background:#020617;border:1px solid #1e293b;">
+                          <div class="flex justify-between items-center text-sm">
+                            <span class="text-slate-500">Domain</span>
+                            <span class="text-white font-medium" id="success-domain-detail">budgettracker.store</span>
+                          </div>
+                          <div class="flex justify-between items-center text-sm">
+                            <span class="text-slate-500">Status</span>
+                            <span class="flex items-center gap-1.5 text-emerald-400 font-medium"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block"></span>Connected</span>
+                          </div>
+                          <div class="flex justify-between items-center text-sm">
+                            <span class="text-slate-500">Renewal</span>
+                            <span class="text-slate-300">$49/yr · Auto-renew on</span>
+                          </div>
+                          <div class="flex justify-between items-center text-sm">
+                            <span class="text-slate-500">Expires</span>
+                            <span class="text-slate-300">June 29, 2027</span>
+                          </div>
+                        </div>
+                        <button class="w-full h-11 border border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800 font-medium rounded-xl transition-colors text-sm">
+                          My domains →
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+            </div><!-- end step cards -->
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
+
+<script>
+  let currentStep = 1;
+
+  const progressWidths = [0, 0.2, 0.4, 0.6, 0.8, 1, 1];
+  const checkSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>`;
+  const giftSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 12 20 22 4 22 4 12"/><rect width="20" height="5" x="2" y="7"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>`;
+
+  function updateProgress(step) {
+    document.getElementById('progress-line').style.transform = `scaleX(${progressWidths[step - 1]})`;
+
+    // Steps 1-5 map 1:1 to bubbles 1-5; steps 6+7 both activate bubble 6
+    const progressStep = step >= 6 ? 6 : step;
+
+    for (let i = 1; i <= 6; i++) {
+      const bubble = document.getElementById('step-bubble-' + i);
+      const label = document.getElementById('step-label-' + i);
+      const isGiftBubble = i === 6;
+
+      if (i < progressStep) {
+        // Completed
+        bubble.className = 'w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 bg-emerald-500 text-white';
+        bubble.innerHTML = checkSVG;
+        label.className = 'text-xs mt-2 font-medium text-center max-w-[70px] text-slate-300';
+      } else if (i === progressStep) {
+        // Active
+        bubble.className = 'w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 bg-blue-500 text-white ring-4 ring-blue-500/20';
+        bubble.innerHTML = isGiftBubble ? giftSVG : i;
+        label.className = 'text-xs mt-2 font-medium text-center max-w-[70px] text-slate-300';
+      } else {
+        // Future
+        bubble.className = 'w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 bg-slate-800 text-slate-500';
+        bubble.innerHTML = isGiftBubble ? giftSVG : i;
+        label.className = 'text-xs mt-2 font-medium text-center max-w-[70px] text-slate-600';
+      }
+    }
+
+    if (step >= 6) {
+      document.getElementById('gen-count').textContent = '1 / 3 lifetime free generations';
+      document.getElementById('gen-bar').style.width = '33.3%';
+    }
+  }
+
+  function showStep(step) {
+    // Hide all
+    document.querySelectorAll('.step-content').forEach(el => el.classList.remove('active'));
+    // Show current
+    const el = document.getElementById('step-' + step);
+    if (el) el.classList.add('active');
+    // Update progress
+    updateProgress(step);
+    // Scroll to top of main
+    document.querySelector('main').scrollTo({top: 0, behavior: 'smooth'});
+  }
+
+  function nextStep() {
+    if (currentStep < 7) {
+      currentStep++;
+      showStep(currentStep);
+    }
+  }
+
+  function prevStep() {
+    if (currentStep > 1) {
+      currentStep--;
+      showStep(currentStep);
+    }
+  }
+
+  function markDownloaded() {
+    const card = document.getElementById('download-card');
+    card.innerHTML = `
+      <div class="flex items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center bg-emerald-500/20 flex-shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-emerald-400"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+          </div>
+          <span class="text-sm font-semibold text-white">Theme download complete</span>
+        </div>
+        <button onclick="markDownloaded()" class="inline-flex items-center gap-1.5 text-xs font-medium text-slate-400 hover:text-white border border-slate-700 hover:border-slate-500 px-3 py-1.5 rounded-lg transition-colors" style="background:transparent;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+          Download again
+        </button>
+      </div>
+    `;
+  }
+
+  function selectProduct(btn) {
+    document.querySelectorAll('.product-option').forEach(el => el.classList.remove('selected'));
+    btn.classList.add('selected');
+  }
+
+  function selectColor(btn) {
+    document.querySelectorAll('.color-option').forEach(el => {
+      el.classList.remove('selected');
+      el.style.background = '#020617';
+      el.style.borderColor = '#334155';
+    });
+    btn.classList.add('selected');
+    btn.style.background = '#0f172a';
+    btn.style.borderColor = 'white';
+  }
+
+  function toggleShopifyCheck() {
+    const cb = document.getElementById('shopify-checkbox');
+    const box = document.getElementById('check-box');
+    if (cb.checked) {
+      box.style.background = '#3b82f6';
+      box.style.borderColor = '#3b82f6';
+      box.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg>`;
+    } else {
+      box.style.background = '';
+      box.style.borderColor = '';
+      box.innerHTML = '';
+    }
+  }
+
+  document.getElementById('dismiss-banner').onclick = function() {
+    this.closest('.sticky').style.display = 'none';
+  };
+
+  // Domain flow
+  let selectedDomain = '';
+
+  function searchDomains() {
+    const input = document.getElementById('domain-search-input').value.trim();
+    if (!input) return;
+    const name = input.toLowerCase().replace(/[^a-z0-9]/g, '').replace(/store$/, '') || 'mybrand';
+    selectedDomain = name + '.store';
+    document.getElementById('result-hero-domain').textContent = selectedDomain;
+
+    const altNames = ['the' + name, name + 'co', 'my' + name, 'get' + name];
+    const list = document.getElementById('result-variations-list');
+    list.innerHTML = altNames.map((n, i) => {
+      const d = n + '.store';
+      const border = i < altNames.length - 1 ? 'border-bottom:1px solid #1e293b;' : '';
+      return `<div class="flex items-center justify-between px-5 py-3.5" style="${border}">
+        <div class="flex items-center gap-2 flex-wrap min-w-0">
+          <span class="text-sm font-semibold text-white">${d}</span>
+          <span class="text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-full shrink-0" style="background:rgba(16,185,129,0.15);color:#34d399;border:1px solid rgba(16,185,129,0.3);">Free Year 1</span>
+        </div>
+        <button onclick="selectedDomain='${d}';openPricingModal()" class="text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors ml-4 shrink-0">Register</button>
+      </div>`;
+    }).join('');
+
+    showDomainState('results');
+  }
+
+  function showDomainState(state) {
+    ['search','results','reg','success'].forEach(s => {
+      const el = document.getElementById('domain-' + s + '-state');
+      if (el) el.style.display = (s === state) ? 'block' : 'none';
+    });
+  }
+
+  function backToSearch() { showDomainState('search'); }
+
+  function openPricingModal() {
+    document.getElementById('modal-domain-name').textContent = selectedDomain;
+    document.getElementById('domain-pricing-modal').style.display = 'flex';
+    showModalPhase('pricing');
+  }
+
+  function closePricingModal() {
+    document.getElementById('domain-pricing-modal').style.display = 'none';
+  }
+
+  function showModalPhase(phase) {
+    ['pricing','stripe','upgraded'].forEach(p => {
+      document.getElementById('modal-phase-' + p).style.display = (p === phase) ? 'block' : 'none';
+    });
+  }
+
+  function showStripePhase() { showModalPhase('stripe'); }
+  function backToPricing()   { showModalPhase('pricing'); }
+
+  function completeVerify() {
+    showModalPhase('upgraded');
+    setTimeout(() => {
+      closePricingModal();
+      document.getElementById('reg-domain-display').textContent = selectedDomain;
+      showDomainState('reg');
+    }, 1800);
+  }
+
+  let domainConsentChecked = false;
+  function toggleDomainConsent() {
+    domainConsentChecked = !domainConsentChecked;
+    const box   = document.getElementById('domain-consent-box');
+    const check = document.getElementById('domain-consent-check');
+    box.style.background  = domainConsentChecked ? '#3b82f6' : 'transparent';
+    box.style.borderColor = domainConsentChecked ? '#3b82f6' : '#475569';
+    check.style.opacity   = domainConsentChecked ? '1' : '0';
+  }
+
+  function submitDomain() {
+    document.getElementById('success-domain-name').textContent = selectedDomain;
+    document.getElementById('success-domain-detail').textContent = selectedDomain;
+    showDomainState('success');
+  }
+
+  // Init
+  showStep(1);
+</script>
+
+<!-- ====================================================== -->
+<!-- DOMAIN PRICING MODAL OVERLAY                           -->
+<!-- ====================================================== -->
+<div id="domain-pricing-modal" style="display:none;position:fixed;inset:0;z-index:100;background:rgba(2,6,23,0.88);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);" class="flex items-center justify-center p-4 overflow-y-auto" onclick="if(event.target===this)closePricingModal()">
+
+  <!-- PHASE 1: PRICING UPSELL -->
+  <div id="modal-phase-pricing" class="w-full max-w-md rounded-2xl relative" style="background:#0f172a;border:1px solid #1e293b;box-shadow:0 25px 60px rgba(0,0,0,0.8);">
+    <button onclick="closePricingModal()" class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full text-slate-400 hover:text-white hover:bg-slate-800 transition-colors z-10">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    </button>
+    <div class="p-6 space-y-5">
+      <div class="text-center space-y-3">
+        <div class="w-14 h-14 rounded-2xl mx-auto flex items-center justify-center" style="background:linear-gradient(135deg,rgba(37,99,235,0.2),rgba(16,185,129,0.2));border:1px solid rgba(37,99,235,0.3);">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-blue-400"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold text-white">Claim for free with Pro</h3>
+          <p class="text-sm text-slate-400 mt-1">Your first .store domain is included with Digital Maker AI Pro</p>
+        </div>
+      </div>
+      <div class="flex items-center justify-between rounded-xl p-4" style="background:rgba(37,99,235,0.1);border:1px solid rgba(37,99,235,0.25);">
+        <div>
+          <p id="modal-domain-name" class="text-white font-bold text-base">budgettracker.store</p>
+          <p class="text-xs text-slate-400 mt-0.5">Free for 1<sup>st</sup> year · $49/yr after renewal</p>
+        </div>
+        <span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded-full shrink-0 ml-3" style="background:rgba(16,185,129,0.15);color:#34d399;border:1px solid rgba(16,185,129,0.3);">Free Year 1</span>
+      </div>
+      <div class="space-y-2">
+        <p class="text-[10px] font-semibold text-slate-500 uppercase tracking-wider">What's included with Pro</p>
+        <div class="space-y-2">
+          <div class="flex items-center gap-2 text-sm text-slate-300"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>Unlimited AI Chat</div>
+          <div class="flex items-center gap-2 text-sm text-slate-300"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>Unlimited Prompt Builder</div>
+          <div class="flex items-center gap-2 text-sm text-slate-300"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>Unlimited Product Replication Checker</div>
+          <div class="flex items-center gap-2 text-sm text-slate-300"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>Unlimited Competitor Analysis</div>
+          <div class="flex items-center gap-2 text-sm text-slate-300"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>Free .store domain (1<sup>st</sup> year included)</div>
+        </div>
+      </div>
+      <div class="rounded-xl p-4" style="background:#020617;border:1px solid #1e293b;">
+        <div class="flex items-baseline gap-2">
+          <span class="text-2xl font-bold text-white">$20.75</span>
+          <span class="text-slate-400 text-sm">/ month</span>
+          <span class="ml-auto text-xs font-semibold px-2 py-0.5 rounded-full" style="background:rgba(16,185,129,0.15);color:#34d399;">Save 17%</span>
+        </div>
+        <p class="text-xs text-slate-500 mt-0.5">$249/year billed annually · cancel anytime</p>
+      </div>
+      <button onclick="showStripePhase()" class="w-full h-12 text-white font-semibold rounded-xl flex items-center justify-center gap-2 transition-all hover:opacity-90" style="background:linear-gradient(to right,#2563eb,#4f46e5);">
+        Upgrade to Pro + Claim Domain
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </button>
+      <button onclick="closePricingModal()" class="w-full text-sm text-slate-500 hover:text-slate-300 py-1 transition-colors">
+        No thanks, I'll skip
+      </button>
+    </div>
+  </div>
+
+  <!-- PHASE 2: STRIPE CHECKOUT -->
+  <div id="modal-phase-stripe" style="display:none;" class="w-full max-w-2xl rounded-2xl overflow-hidden shadow-2xl">
+    <div class="flex flex-col md:flex-row">
+      <!-- LEFT: Invoice -->
+      <div class="md:w-[52%] p-7 space-y-5" style="background:#f8fafc;">
+        <div class="flex items-center gap-2">
+          <button onclick="backToPricing()" class="flex items-center justify-center text-slate-400 hover:text-slate-700 transition-colors mr-1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+          </button>
+          <div class="w-6 h-6 rounded bg-blue-600 flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+          </div>
+          <span class="text-sm font-medium" style="color:#475569;">Digital Maker AI</span>
+        </div>
+        <div>
+          <p class="text-xs font-medium mb-1" style="color:#94a3b8;">Subscribe to</p>
+          <h3 class="text-xl font-bold" style="color:#0f172a;">Digital Maker AI Pro</h3>
+          <div class="flex items-baseline gap-2 mt-2">
+            <span class="text-4xl font-bold" style="color:#0f172a;">$20.75</span>
+            <span class="text-sm" style="color:#94a3b8;">per month</span>
+          </div>
+          <p class="text-xs mt-1" style="color:#94a3b8;">$249.00 billed annually</p>
+        </div>
+        <div style="border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0;padding:16px 0;">
+          <div class="flex items-start justify-between gap-3">
+            <div class="w-10 h-10 rounded-lg bg-blue-600 flex items-center justify-center flex-shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-sm font-semibold" style="color:#1e293b;">Digital Maker AI Pro</p>
+              <p class="text-xs mt-0.5 flex items-center gap-0.5" style="color:#94a3b8;">Unlimited AI Chat, Theme Generations, Free .store Domain
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:#cbd5e1;"><path d="m6 9 6 6 6-6"/></svg>
+              </p>
+              <p class="text-xs mt-0.5" style="color:#94a3b8;">Billed annually · $249.00/yr</p>
+            </div>
+            <span class="text-sm font-semibold shrink-0" style="color:#1e293b;">$20.75</span>
+          </div>
+        </div>
+        <div class="space-y-3">
+          <div class="flex justify-between text-sm" style="color:#64748b;"><span>Subtotal</span><span>$20.75</span></div>
+          <button class="flex items-center gap-1.5 text-sm transition-colors" style="color:#94a3b8;" onmouseover="this.style.color='#475569'" onmouseout="this.style.color='#94a3b8'">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+            Add promotion code
+          </button>
+          <div style="border-top:1px solid #e2e8f0;padding-top:12px;" class="flex justify-between font-semibold text-sm">
+            <span style="color:#0f172a;">Total due today</span>
+            <span style="color:#0f172a;">$20.75</span>
+          </div>
+        </div>
+      </div>
+      <!-- RIGHT: Stripe Link -->
+      <div class="md:w-[48%] p-6 flex flex-col justify-center" style="background:#ffffff;">
+        <div class="max-w-xs mx-auto w-full space-y-5">
+          <div class="rounded-2xl p-5" style="border:1.5px solid #e5e7eb;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-1.5">
+                <div class="w-7 h-7 rounded-full flex items-center justify-center" style="background:#00D09B;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                </div>
+                <span class="font-bold" style="font-size:17px;letter-spacing:-0.3px;color:#1f2937;">link</span>
+              </div>
+              <button class="p-1" style="color:#9ca3af;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+              </button>
+            </div>
+            <h3 class="text-xl font-bold" style="color:#111827;">Confirm it's you</h3>
+            <p class="text-sm mt-2 mb-4" style="color:#6b7280;line-height:1.55;">Before we email you a code, we need to verify your phone number.</p>
+            <div class="flex items-center h-12 rounded-lg px-3 mb-4 gap-2" style="border:1.5px solid #d1d5db;">
+              <span style="font-size:18px;line-height:1;">🇮🇳</span>
+              <span class="text-sm font-medium" style="color:#374151;">+91</span>
+              <div style="width:1px;height:18px;background:#e5e7eb;margin:0 4px;"></div>
+              <input type="tel" value="081234 56789" class="flex-1 text-sm bg-transparent outline-none" style="color:#374151;">
+            </div>
+            <button onclick="completeVerify()" class="w-full h-11 rounded-lg text-white font-semibold text-sm mb-3 transition-opacity hover:opacity-90" style="background:#30A35A;">
+              Verify
+            </button>
+            <button onclick="backToPricing()" class="w-full h-11 rounded-lg font-medium text-sm mb-3 transition-colors" style="border:1px solid #d1d5db;color:#374151;background:#fff;" onmouseover="this.style.background='#f9fafb'" onmouseout="this.style.background='#fff'">
+              Back
+            </button>
+            <p class="text-center text-sm font-medium cursor-pointer hover:opacity-80 transition-opacity" style="color:#30A35A;">Pay without Link</p>
+          </div>
+          <p class="text-center text-xs" style="color:#9ca3af;">
+            Powered by <span class="font-bold" style="color:#6b7280;">stripe</span>
+            <span class="mx-1.5" style="color:#d1d5db;">|</span>
+            <span class="cursor-pointer hover:underline">Terms</span>
+            <span class="mx-1.5" style="color:#d1d5db;">|</span>
+            <span class="cursor-pointer hover:underline">Privacy</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 3: UPGRADED SUCCESS -->
+  <div id="modal-phase-upgraded" style="display:none;background:#0f172a;border:1px solid rgba(16,185,129,0.35);box-shadow:0 25px 60px rgba(0,0,0,0.8);" class="w-full max-w-sm rounded-2xl p-8 text-center">
+    <div class="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center" style="background:rgba(16,185,129,0.15);border:1px solid rgba(16,185,129,0.3);">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+    </div>
+    <h3 class="text-2xl font-bold text-white mb-2">You're on Pro!</h3>
+    <p class="text-slate-400 text-sm leading-relaxed">Account upgraded. Now let's register your free domain.</p>
+    <p class="text-xs text-slate-600 mt-4">Taking you to domain registration...</p>
+  </div>
+
+</div>
+
+</body>
+</html>
